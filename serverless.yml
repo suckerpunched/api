@@ -1,0 +1,83 @@
+service: API
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+
+resources:
+  Resources:
+    AccountDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: _id
+            AttributeType: S
+
+        KeySchema:
+          -
+            AttributeName: _id
+            KeyType: HASH
+
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+
+functions:
+  get_account:
+    handler: api.get_account
+    events:
+      - http:
+          path: api/{_id}
+          method: get
+          cors: true
+  
+  get_account_section:
+    handler: api.get_account_section
+    events:
+      - http:
+          path: api/{_id}/{keys+}
+          method: get
+          cors: true
+
+  post_account:
+    handler: api.post_account
+    events:
+      - http:
+          path: api/{_id}
+          method: post
+          cors: true
+
+  post_account_section:
+    handler: api.post_account_section
+    events:
+      - http:
+          path: api/{_id}/{keys+}
+          method: post
+          cors: true
+
+  put_account_section_pair_value:
+    handler: api.put_account_section_pair_value
+    events:
+      - http:
+          path: api/{_id}/{keys+}
+          method: put
+          cors: true
+
+  

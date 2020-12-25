@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "882a193b-9a75-4efb-a880-cda76265d234",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Entry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"alias\":\"abc-xyz\",\n    \"website\":\"www.abc.com\",\n    \"company\":\"abc .inc\"\n}"
+				},
+				"url": {
+					"raw": "https://3g9s3a6m25.execute-api.us-west-2.amazonaws.com/dev/api/0001",
+					"protocol": "https",
+					"host": [
+						"3g9s3a6m25",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"0001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Entry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3g9s3a6m25.execute-api.us-west-2.amazonaws.com/dev/api/0001",
+					"protocol": "https",
+					"host": [
+						"3g9s3a6m25",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"0001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Section",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\":\"this is value\"\n}"
+				},
+				"url": {
+					"raw": "https://3g9s3a6m25.execute-api.us-west-2.amazonaws.com/dev/api/0001/section1",
+					"protocol": "https",
+					"host": [
+						"3g9s3a6m25",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"0001",
+						"section1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Section Value",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"value\":\"this is update value\"\n}"
+				},
+				"url": {
+					"raw": "https://3g9s3a6m25.execute-api.us-west-2.amazonaws.com/dev/api/0001/section1/data",
+					"protocol": "https",
+					"host": [
+						"3g9s3a6m25",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"0001",
+						"section1",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}
